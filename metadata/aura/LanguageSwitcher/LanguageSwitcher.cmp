@@ -3,25 +3,93 @@
                 >
     
     <!--allow to change-->
-    <aura:attribute name="leftText" type="String" default="Language Switch:"/>
-    <aura:attribute name="rightText" type="String" default=""/>
-    <aura:attribute name="leftButtonString" type="String" default="English"/>
-    <aura:attribute name="rightButtonString" type="String" default="Japanese"/>
-    <aura:attribute name="leftLang" type="String" default="English"/>
-    <aura:attribute name="rightLang" type="String" default="Japanese"/>
-    
+    <aura:attribute name="en_US" type="Boolean" default="true"/>
+    <aura:attribute name="ja" type="Boolean"/>
+    <aura:attribute name="zh_CN" type="Boolean"/>
+    <aura:attribute name="zh_TW" type="Boolean"/>
+    <aura:attribute name="da" type="Boolean"/>
+    <aura:attribute name="nl_NL" type="Boolean"/>
+    <aura:attribute name="fi" type="Boolean"/>
+    <aura:attribute name="fr" type="Boolean"/>
+    <aura:attribute name="de" type="Boolean"/>
+    <aura:attribute name="it" type="Boolean"/>
+    <aura:attribute name="ko" type="Boolean"/>
+    <aura:attribute name="no" type="Boolean"/>
+    <aura:attribute name="pt_BR" type="Boolean"/>
+    <aura:attribute name="ru" type="Boolean"/>
+    <aura:attribute name="es" type="Boolean"/>
+    <aura:attribute name="es_MX" type="Boolean"/>
+    <aura:attribute name="sv" type="Boolean"/>
+    <aura:attribute name="th" type="Boolean"/>    
+
     <!--internal use-->
-    <aura:attribute name="currentLang" type="String" default=""/>
+    <aura:attribute name="currentLanguage" type="String" default="English"/>
     
     <!--event-->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     
     <!--main contents-->    
-    <div class="slds">
-        {!v.leftText}&nbsp;
-        <ui:button aura:id="changeToLeft" label="{!v.leftButtonString}" press="{!c.changeToLeft}"/>
-        <ui:button aura:id="changeToRight" label="{!v.rightButtonString}" press="{!c.changeToRight}"/>
-        &nbsp;{!v.rightText}
+    <div aura:id="languageSwitcher" class="slds-grid slds-grid_align-end">
+        <div class="slds-col" style="margin-right: 10px;">
+            <lightning:buttonMenu alternativeText="Switch Language" onselect="{! c.switchLanguage }">
+                <aura:renderIf isTrue="{!v.en_US}">
+                    <lightning:menuItem label="English" value="English" />
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.ja}">
+                    <lightning:menuItem label="Japanese" value="Japanese" />
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.zh_CN}"> 
+                    <lightning:menuItem label="Chinese (Simplified)" value="Chinese (Simplified)"/>
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.zh_TW}"> 
+                    <lightning:menuItem label="Chinese (Traditional)" value="Chinese (Traditional)"/>
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.da}"> 
+                    <lightning:menuItem label="Danish" value="Danish"/>
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.nl_NL}"> 
+                    <lightning:menuItem label="Dutch" value="Dutch"/>
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.fi}"> 
+                    <lightning:menuItem label="Finnish" value="Finnish"/>
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.fr}"> 
+                    <lightning:menuItem label="French" value="French"/>
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.de}"> 
+                    <lightning:menuItem label="German" value="German"/>
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.it}"> 
+                    <lightning:menuItem label="Italian" value="Italian"/>
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.ko}"> 
+                    <lightning:menuItem label="Korean" value="Korean"/>
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.no}"> 
+                    <lightning:menuItem label="Norwegian" value="Norwegian"/>
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.pt_BR}"> 
+                    <lightning:menuItem label="Portuguese (Brazil)" value="Portuguese (Brazil)"/>
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.ru}"> 
+                    <lightning:menuItem label="Russian" value="Russian"/>
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.es}"> 
+                    <lightning:menuItem label="Spanish" value="Spanish"/>
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.es_MX}"> 
+                    <lightning:menuItem label="Spanish (Mexico)" value="Spanish (Mexico)"/>
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.sv}"> 
+                    <lightning:menuItem label="Swedish" value="Swedish"/>
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.th}"> 
+                    <lightning:menuItem label="Thai" value="Thai"/>
+                </aura:renderIf>
+            </lightning:buttonMenu>
+        </div>
+        <div aura:id="currentLanguage" class="slds-col">
+            {!v.currentLanguage}
+        </div>
     </div>
-    
 </aura:component>

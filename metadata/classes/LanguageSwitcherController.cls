@@ -37,7 +37,7 @@ public with sharing class LanguageSwitcherController {
             }
             ret1 = key2lang.get(changedLang);
          } else {
-             ret1 = '--no language--';
+             ret1 = 'English';
          }
                                 
             return ret1;
